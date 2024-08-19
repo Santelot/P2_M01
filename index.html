@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook P2 M01</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            // Mostrar todas las actividades por defecto
+            var activities = document.getElementsByClassName('activity');
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            // Ajustar según el tiempo seleccionado
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook Gnius Club - Storytelling</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+<!-- Actividad 0 (1 paso) -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision-mision')">
+        <div class="title">
+            <span>📝 Actividad 0: Revisión Misión (1 paso)</span>
+            <span>⏰ Tiempo: N/A</span>
+        </div>
+        <div class="subtitle">Preparar la misión</div>
+        <div class="summary">El profesor revisa que todo esté en orden: computadoras, proyectores, y materiales necesarios.</div>
+    </div>
+    <div id="revision-mision" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Revisar que todo esté en orden</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Voy a revisar que todo esté listo antes de comenzar nuestra misión de hoy. ¡Asegurémonos de que todo funcione correctamente!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 1 (4 pasos) -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo-ritual')">
+        <div class="title">
+            <span>📚 Actividad 1: Saludo y Ritual Gnius Club (4 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Iniciar la clase y preparar a los estudiantes para la misión</div>
+        <div class="summary">Saludar a los estudiantes, preguntar cómo se sienten, agradecerles y explicar los objetivos de la clase.</div>
+    </div>
+    <div id="saludo-ritual" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Saludar a los estudiantes de manera entusiasta y agradecida</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Hola, Genios! ¡Qué emoción verlos hoy! Vamos a explorar el increíble mundo del storytelling. ¡Esto va a ser una gran aventura!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Preguntar a los estudiantes cómo se sienten antes de comenzar</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¿Cómo se sienten hoy? ¿Están listos para crear y contar historias emocionantes?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (0.5 minutos): Agradecer a los estudiantes por su esfuerzo y participación</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Gracias por estar aquí y por su creatividad, Genios. ¡Es un placer contar historias juntos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1.5 minutos): Explicar claramente los objetivos de la clase</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy, nuestro objetivo es aprender los conceptos básicos de storytelling: cómo estructurar historias y usar elementos narrativos para hacerlas más emocionantes."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 2 (4 pasos) -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('innovacion-dia')">
+        <div class="title">
+            <span>💡 Actividad 2: Innovación del Día (4 pasos)</span>
+            <span>⏰ Tiempo: 5 minutos</span>
+        </div>
+        <div class="subtitle">Explorar la innovación del día en el storytelling</div>
+        <div class="summary">Introducir cómo la tecnología y los videojuegos están revolucionando la manera en que se cuentan historias.</div>
+    </div>
+    <div id="innovacion-dia" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (2 minutos): Proyectar diapositiva de introducción al concepto innovador</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Hoy vamos a ver cómo la tecnología ha cambiado la manera en que contamos historias. Vamos a descubrir cómo se usan los videojuegos para crear experiencias interactivas donde los jugadores son parte activa de la historia."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar el video de YouTube que muestra cómo un videojuego utiliza el storytelling para crear una experiencia inmersiva</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Miren este video del juego de Spider-Man Miles Morales que muestra cómo los videojuegos modernos permiten a los jugadores decidir el rumbo de la historia, haciéndolos parte activa del storytelling."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar diapositiva que resuma el impacto del storytelling en videojuegos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Este tipo de storytelling permite a las personas no solo jugar, sino vivir la historia, tomando decisiones que afectan el resultado. ¡Es una forma completamente nueva de contar historias!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Guiar a los estudiantes en una breve reflexión</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¿Cómo creen que este tipo de storytelling puede cambiar la manera en que pensamos sobre las historias? ¿Qué otras maneras creativas de contar historias se les ocurren?"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 3 (7 pasos) -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('brain-gym')">
+        <div class="title">
+            <span>💪 Actividad 3: Brain Gym (7 pasos)</span>
+            <span>⏰ Tiempo: 14 minutos</span>
+        </div>
+        <div class="subtitle">Explorar los elementos y estructura del storytelling</div>
+        <div class="summary">Aprender sobre la teoría del storytelling, la estructura narrativa y los elementos narrativos clave.</div>
+    </div>
+    <div id="brain-gym" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (2 minutos): Proyectar diapositiva de introducción a la teoría del storytelling</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, Genios, vamos a aprender sobre los elementos que hacen que una historia sea interesante. Primero, veremos qué es el storytelling y cómo se estructuran las historias."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Proyectar diapositiva sobre la estructura narrativa</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Las historias generalmente tienen tres partes: un inicio que presenta los personajes y el escenario, un desarrollo donde ocurren los eventos principales, y un final que resuelve la historia."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Proyectar diapositiva que explique cada parte de la estructura con un ejemplo simple</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Por ejemplo, en el inicio, conocemos a los personajes y el lugar donde ocurre la historia. En el desarrollo, el personaje principal enfrenta un problema, y en el final, vemos cómo se resuelve ese problema."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (2 minutos): Proyectar diapositiva sobre elementos narrativos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Dentro de cada historia, encontramos elementos como personajes, escenario, un conflicto o problema, y su resolución. Estos son los ingredientes que hacen que las historias cobren vida."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (2 minutos): Proyectar diapositiva que explique cada elemento narrativo con un ejemplo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Por ejemplo, en 'Caperucita Roja', los personajes son Caperucita y el Lobo. El escenario es el bosque. El conflicto es el peligro que Caperucita enfrenta al encontrarse con el Lobo, y la resolución es cuando el cazador salva a Caperucita."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 6 (2 minutos): Guiar a los estudiantes en la reflexión sobre los conceptos presentados</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¿Pueden pensar en una historia que conozcan y que tenga estos elementos? ¿Qué conflicto tuvo el personaje principal y cómo se resolvió?"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 7 (2 minutos): Proyectar diapositiva de resumen</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Recuerden, Genios, todas las historias que conocemos siguen esta estructura básica y contienen estos elementos. ¡Ahora están listos para empezar a crear sus propias historias!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 4 (4 pasos) -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('state-change')">
+        <div class="title">
+            <span>🔄 Actividad 4: State Change (4 pasos)</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Cambio de estado y preparación mental</div>
+        <div class="summary">Guiar a los estudiantes en una breve actividad de respiración y visualización para relajarse y preparar la mente.</div>
+    </div>
+    <div id="state-change" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Guiar a los estudiantes en la actividad "Respiración Creativa"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Es hora de un pequeño cambio de estado, Genios! Vamos a hacer una breve actividad llamada 'Respiración Creativa'. Esto nos ayudará a relajarnos y a abrir nuestra mente para la siguiente parte de la misión."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Hacer que los estudiantes cierren los ojos y respiren profundamente</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Cierren los ojos y tomen una respiración profunda, inhalando por la nariz... y exhalando por la boca. Imagina que estás respirando ideas frescas y creativas."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Hacer que los estudiantes visualicen una imagen creativa mientras respiran</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, mientras sigues respirando profundamente, imagina una historia tomando forma en tu mente. Puede ser sobre cualquier cosa que te inspire."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Hacer que los estudiantes abran los ojos y se preparen para la siguiente actividad</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Finalmente, exhalen profundamente y abran los ojos cuando estén listos. ¡Estamos preparados para continuar con nuestra misión de storytelling!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 5 (2 pasos) -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('team-gnius')">
+        <div class="title">
+            <span>🤝 Actividad 5: Team Gnius (2 pasos)</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Trabajo en equipo y creación de historias</div>
+        <div class="summary">Formar equipos y guiar a los estudiantes en la creación de una historia utilizando la estructura narrativa y los elementos narrativos.</div>
+    </div>
+    <div id="team-gnius" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (2 minutos): Guiar a los estudiantes en la formación de equipos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Genios, es hora de trabajar en equipo! Vamos a formar grupos de 3 o 4 para una actividad divertida. Usaremos las Magic Tablets para tomar notas y crear nuestra historia."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Guiar a los estudiantes en la creación de una historia dentro de sus equipos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Cada equipo va a crear una mini historia utilizando lo que aprendimos hoy: estructura narrativa y elementos narrativos. Usen las Magic Tablets para anotar sus ideas y organizar su historia."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 6 (5 pasos) -->
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">
+            <span>🏆 Actividad 6: Challenge (5 pasos)</span>
+            <span>⏰ Tiempo: 12 minutos</span>
+        </div>
+        <div class="subtitle">Crear una historia completa en equipo</div>
+        <div class="summary">Guiar a los equipos en la creación de una historia completa utilizando la estructura narrativa y los elementos narrativos.</div>
+    </div>
+    <div id="challenge" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (2 minutos): Proyectar diapositiva con las instrucciones del desafío</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora que ya conocen los elementos básicos de storytelling, cada equipo va a crear su propia historia completa. Usen la estructura de inicio, desarrollo y final, y asegúrense de incluir personajes, un escenario, un conflicto y su resolución. Pueden usar sus Magic Tablets para tomar notas y organizar sus ideas."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Proyectar diapositiva que les ayude a organizar sus ideas</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Primero, decidan quiénes serán los personajes y dónde ocurrirá la historia. Usen sus Magic Tablets para anotar sus ideas. Tienen 2 minutos para definir esto en sus equipos."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (3 minutos): Proyectar diapositiva que les ayude a enfocarse en el conflicto</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora, piensen en cuál será el problema o conflicto que enfrentan sus personajes. Tienen otros 2 minutos para definir el conflicto de su historia y anotarlo en sus Magic Tablets."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (3 minutos): Proyectar diapositiva que les ayude a pensar en la resolución</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Finalmente, decidan cómo se resolverá el conflicto en su historia. Tienen 2 minutos para trabajar en la resolución y anotarla en sus Magic Tablets."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (2 minutos): Guiar a los equipos a revisar y afinar su historia completa</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Ahora que tienen la historia completa, revisen todos los detalles y asegúrense de que la historia fluya bien desde el inicio hasta el final. Tienen 3 minutos para hacer los ajustes finales en sus Magic Tablets."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 7 (4 pasos) -->
+<div id="activity-7" class="activity">
+    <div class="banner" onclick="toggleContent('easter-egg')">
+        <div class="title">
+            <span>🎯 Actividad 7: Easter Egg (4 pasos)</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Evaluar la atención de los estudiantes con una pregunta especial</div>
+        <div class="summary">Lanzar una pregunta sobre la lección, seleccionar a los estudiantes que respondan correctamente y recompensarlos con Mon-e.</div>
+    </div>
+    <div id="easter-egg" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Lanzar una pregunta relacionada con la lección para que los estudiantes respondan</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Ahora es el momento de ver quién ha estado prestando atención! En la siguiente diapositiva, encontrarán una pregunta sobre algo que discutimos hoy. Los tres primeros en levantar la mano y dar la respuesta correcta ganarán un Mon-e. ¡Estén atentos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Elegir a los tres estudiantes que levantaron la mano primero y recibir sus respuestas en voz baja</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Voy a seleccionar a tres de ustedes. Vengan uno por uno y díganme su respuesta en voz baja."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva con la respuesta correcta</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Muy bien! La respuesta correcta es... ¡La historia de Caperucita Roja tiene sus raíces en la Edad Media, alrededor del siglo XIV! ¡Felicidades a los ganadores! Recuerden, este es un aspecto importante del storytelling."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Entregar Mon-e a los estudiantes que respondieron correctamente</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Aquí tienen sus Mon-e por prestar atención y responder correctamente. ¡Sigan así, Genios!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 8 (3 pasos) -->
+<div id="activity-8" class="activity">
+    <div class="banner" onclick="toggleContent('honor-dojo')">
+        <div class="title">
+            <span>🏅 Actividad 8: Honor de Dojo (3 pasos)</span>
+            <span>⏰ Tiempo: 5 minutos</span>
+        </div>
+        <div class="subtitle">Reflexión y cierre de la clase</div>
+        <div class="summary">Reflexionar sobre lo aprendido, felicitar a los equipos por su esfuerzo, y organizar el espacio de trabajo.</div>
+    </div>
+    <div id="honor-dojo" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (2 minutos): Proyectar la diapositiva de "Honor de Dojo"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"¡Genios, han hecho un trabajo increíble hoy! Ahora, tomémonos un momento para reflexionar sobre lo que hemos aprendido y cómo trabajamos juntos en nuestras historias."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1.5 minutos): Felicitar a los equipos por su creatividad y esfuerzo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Estoy muy orgulloso de cómo cada equipo creó sus historias. ¡Han demostrado ser verdaderos narradores! Vamos a celebrar a nuestros genios más destacados hoy."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1.5 minutos): Guiar a los estudiantes en la recolección de materiales y limpieza del área de trabajo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">"Para finalizar, vamos a asegurarnos de
+</div> <!-- Cierre del container -->
+
+<!-- Scripts adicionales si es necesario -->
+<script>
+    // Agregar scripts adicionales aquí si es necesario
+</script>
+
+</body>
+</html>
